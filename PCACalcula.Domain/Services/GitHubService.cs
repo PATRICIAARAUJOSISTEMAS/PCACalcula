@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PCACalcula.XUnitTest.tests.Asserts
+namespace PCACalcula.XUnitTest.tests
 {
     internal class GitHubService
     {

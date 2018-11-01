@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PCACalcula.Domain.Services;
 using Xunit;
 
-namespace PCACalcula.XUnitTest.tests.Asserts
+namespace PCACalcula.XUnitTest.tests
 {
     public class GitHubTest
     {
