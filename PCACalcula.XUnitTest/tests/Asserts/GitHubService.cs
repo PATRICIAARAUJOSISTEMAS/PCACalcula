@@ -8,9 +8,7 @@ namespace PCACalcula.XUnitTest.tests.Asserts
         {
         }
 
-        internal object GetUrl()
-        {
-            throw new NotImplementedException();
-        }
+        internal string GetUrl()
+            => "https://github.com/PATRICIAARAUJOSISTEMAS/PCACalcula";
     }
 }
