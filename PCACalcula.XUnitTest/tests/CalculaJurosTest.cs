@@ -57,10 +57,12 @@ namespace PCACalcula.XUnitTest.tests
             resultadoExperado.AssertNotificationPattern(_calculaJurosService.Notifications.FirstOrDefault());
         }
 
-        [Fact]
-        public void DeveExibirMensagemAoInserirMesesIgualAZero()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-5)]
+        public void DeveExibirMensagemAoInserirMesesIgualAZero(int meses)
         {
-            var valorInicial = _faker.Random.Decimal(0, 10000);
+            var valorInicial = _faker.Random.Decimal(meses, 10000);
 
             var resultadoExperado = CreateNotification("Meses", "Você deve inserir um mês maior que 0.");
             _calculaJurosService.Calcula(valorInicial, 0);
