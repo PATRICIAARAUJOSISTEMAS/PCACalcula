@@ -8,10 +8,10 @@ namespace PCACalcula.XUnitTest.tests.Asserts
 {
     public static class AssertNotification
     {
-        public static void AssertNotificationPattern(this Notification notificacaoExperado, Notification notificacaoAtual)
+        public static void AssertNotificationPattern(this Notification notificacaoEsperado, Notification notificacaoAtual)
         {
-            Assert.Equal(notificacaoAtual.Property, notificacaoExperado.Property);
-            Assert.Equal(notificacaoAtual.Message, notificacaoExperado.Message);
+            Assert.Equal(notificacaoAtual.Property, notificacaoEsperado.Property);
+            Assert.Equal(notificacaoAtual.Message, notificacaoEsperado.Message);
         }
     }
 }

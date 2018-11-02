@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PCACalcula.Domain.Interfaces;
 using PCACalcula.Models;
@@ -10,7 +7,7 @@ using PCACalcula.Models;
 namespace PCACalcula.Controllers
 {
     [Route("PCACalcula/[controller]")]
-    public class CalculaJurosController : Controller
+    public class CalculaJurosController : BaseController
     {
         private ICalculaJurosService _calculaJurosService;
 
@@ -26,11 +23,11 @@ namespace PCACalcula.Controllers
         {
             try
             {
-              return Ok(_calculaJurosService.Calcula(viewModel.ValorInicial, viewModel.Meses));
+              return ResponseOk(_calculaJurosService.Calcula(viewModel.ValorInicial, viewModel.Meses), _calculaJurosService);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return ResponseException(ex);
             }
         }
     }

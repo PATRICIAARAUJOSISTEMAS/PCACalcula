@@ -1,7 +1,7 @@
 ﻿
 namespace PCACalcula.Domain.Interfaces
 {
-    public interface IGitHubService
+    public interface IGitHubService : IServiceBase
     {
         string GetUrl();
     }

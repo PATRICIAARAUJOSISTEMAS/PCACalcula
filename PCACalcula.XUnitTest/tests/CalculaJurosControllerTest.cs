@@ -3,11 +3,7 @@ using Moq;
 using PCACalcula.Controllers;
 using PCACalcula.Domain.Interfaces;
 using PCACalcula.XUnitTest.tests.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PCACalcula.XUnitTest.tests
@@ -29,14 +25,9 @@ namespace PCACalcula.XUnitTest.tests
             var valorInicial = 100.00M;
             var meses = 5;
 
-            var resultadoExperado = Utilidades.CalcularResultadoExperado(valorInicial, meses);
+            var resultadoEsperado = Utilidades.CalcularResultadoEsperado(valorInicial, meses);
 
-            _serviceMock.Setup(f => f.Calcula
-            (
-                It.IsAny<decimal>(),
-                It.IsAny<int>()
-             ))
-              .Returns(resultadoExperado);
+            IncludeSetup(resultadoEsperado);
 
             var calculaJurosController = new CalculaJurosController(_serviceMock.Object);
 
@@ -47,19 +38,14 @@ namespace PCACalcula.XUnitTest.tests
         }
 
         [Fact]
-        public void DeveCalcularJuosRandom()
+        public void DeveCalcularJurosRandom()
         {
             var valorInicial = _faker.Random.Decimal(0, 10000);
             var meses = _faker.Random.Int(1, 100);
 
-            var resultadoExperado = Utilidades.CalcularResultadoExperado(valorInicial, meses);
+            var resultadoEsperado = Utilidades.CalcularResultadoEsperado(valorInicial, meses);
 
-            _serviceMock.Setup(f => f.Calcula
-            (
-                It.IsAny<decimal>(),
-                It.IsAny<int>()
-            ))
-             .Returns(resultadoExperado);
+            IncludeSetup(resultadoEsperado);
 
             var calculaJurosControleer = new CalculaJurosController(_serviceMock.Object);
 
@@ -67,6 +53,49 @@ namespace PCACalcula.XUnitTest.tests
             var actionResult = calculaJurosControleer.CalculaJuros(parameter);
 
             Assert.IsType<OkObjectResult>(actionResult);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-10)]
+        public void DeveExibirMensagemAoInserirValorInicialIgualAZeroOuMenorQueZero(decimal valorInicial)
+        {
+            var meses = _faker.Random.Int(1, 100);
+
+            var calculaJurosControleer = new CalculaJurosController(_serviceMock.Object);
+
+            var parameter = Utilidades.CreateViewModel(valorInicial, meses);
+            var actionResult = calculaJurosControleer.CalculaJuros(parameter);
+
+            Assert.IsType<BadRequestObjectResult>(actionResult);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-5)]
+        public void DeveExibirMensagemAoInserirMesesIgualAZero(int meses)
+        {
+            var valorInicial = _faker.Random.Decimal(meses, 10000);
+
+            var calculaJurosControleer = new CalculaJurosController(_serviceMock.Object);
+
+            var parameter = Utilidades.CreateViewModel(valorInicial, meses);
+            var actionResult = calculaJurosControleer.CalculaJuros(parameter);
+
+            Assert.IsType<BadRequestObjectResult>(actionResult);
+
+        }
+
+        private void IncludeSetup(float resultadoEsperado)
+        {
+            _serviceMock.Setup(f => f.Calcula
+            (
+                It.IsAny<decimal>(),
+                It.IsAny<int>()
+            ))
+             .Returns(resultadoEsperado);
+
+            _serviceMock.Setup(f => f.IsValid()).Returns(true);
         }
     }
 }
