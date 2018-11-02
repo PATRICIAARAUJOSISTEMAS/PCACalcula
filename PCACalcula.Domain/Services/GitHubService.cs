@@ -1,14 +1,10 @@
-﻿using System;
+﻿using PCACalcula.Domain.Interfaces;
 
-namespace PCACalcula.XUnitTest.tests
+namespace PCACalcula.Domain.Services
 {
-    internal class GitHubService
+    public class GitHubService : IGitHubService
     {
-        public GitHubService()
-        {
-        }
-
-        internal string GetUrl()
+        public string GetUrl()
             => "https://github.com/PATRICIAARAUJOSISTEMAS/PCACalcula";
     }
 }

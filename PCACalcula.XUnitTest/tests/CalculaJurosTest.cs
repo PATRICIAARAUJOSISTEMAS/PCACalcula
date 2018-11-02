@@ -1,10 +1,9 @@
 ﻿using Bogus;
 using PCACalcula.Domain.Services;
 using PCACalcula.XUnitTest.tests.Asserts;
-using prmToolkit.NotificationPattern;
-using System;
 using System.Linq;
 using Xunit;
+using PCACalcula.XUnitTest.tests.Utils;
 
 namespace PCACalcula.XUnitTest.tests
 {
@@ -25,7 +24,7 @@ namespace PCACalcula.XUnitTest.tests
             var valorInicial = 100.00M;
             var meses = 5;
 
-            var resultadoExperado = CalcularResultadoExperado(valorInicial, meses);
+            var resultadoExperado = Utilidades.CalcularResultadoExperado(valorInicial, meses);
             var resultado = _calculaJurosService.Calcula(valorInicial, meses);
 
             Assert.Equal(resultadoExperado, resultado);
@@ -38,7 +37,7 @@ namespace PCACalcula.XUnitTest.tests
             var valorInicial = _faker.Random.Decimal(0, 10000);
             var meses = _faker.Random.Int(1, 100);
 
-            var resultadoExperado = CalcularResultadoExperado(valorInicial, meses);
+            var resultadoExperado = Utilidades.CalcularResultadoExperado(valorInicial, meses);
             var resultado = _calculaJurosService.Calcula(valorInicial, meses);
 
             Assert.Equal(resultadoExperado, resultado);
@@ -51,7 +50,7 @@ namespace PCACalcula.XUnitTest.tests
         {
             var meses = _faker.Random.Int(1, 100);
 
-            var resultadoExperado = CreateNotification("ValorInicial", "Você deve inserir um valor inicial maior que 0.");
+            var resultadoExperado = Utilidades.CreateNotification("ValorInicial", "Você deve inserir um valor inicial maior que 0.");
             _calculaJurosService.Calcula(valorInicial, meses);
 
             resultadoExperado.AssertNotificationPattern(_calculaJurosService.Notifications.FirstOrDefault());
@@ -64,16 +63,10 @@ namespace PCACalcula.XUnitTest.tests
         {
             var valorInicial = _faker.Random.Decimal(meses, 10000);
 
-            var resultadoExperado = CreateNotification("Meses", "Você deve inserir um mês maior que 0.");
+            var resultadoExperado = Utilidades.CreateNotification("Meses", "Você deve inserir um mês maior que 0.");
             _calculaJurosService.Calcula(valorInicial, 0);
 
             resultadoExperado.AssertNotificationPattern(_calculaJurosService.Notifications.FirstOrDefault());
         }
-
-        private float CalcularResultadoExperado(decimal valorInicial, int meses)
-            =>  ((float)((double)valorInicial * Math.Pow(1.01, meses))).ToTwoPlaces();
-
-        private Notification CreateNotification(string propriedade, string mensagem)
-            => new Notification(propriedade, mensagem);
     }
 }
