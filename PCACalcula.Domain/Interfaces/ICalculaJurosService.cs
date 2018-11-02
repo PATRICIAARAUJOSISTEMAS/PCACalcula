@@ -1,6 +1,4 @@
-﻿
-
-namespace PCACalcula.Domain.Interfaces
+﻿namespace PCACalcula.Domain.Interfaces
 {
     public interface ICalculaJurosService : IServiceBase
     {

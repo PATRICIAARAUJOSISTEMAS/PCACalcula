@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using PCACalcula.Controllers;
 using PCACalcula.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PCACalcula.XUnitTest
