@@ -2,12 +2,15 @@
 {
     public static class Converter
     {
-        public static float ToTwoPlaces(this float number)
+        public static float ToTwoPlaces(this double number)
         {
             if (number <= 0)
                 return 0;
 
-           return Convert.ToSingle(String.Format("{0:00.0}", number));
+            var fator = (decimal)Math.Pow(10d, 2);
+            var valorTruncado = Math.Floor((decimal)number * fator);
+
+            return (float)(Math.Floor((Math.Round(valorTruncado, 2))) / fator);
         }
     }
 }

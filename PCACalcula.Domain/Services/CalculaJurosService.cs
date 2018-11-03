@@ -11,7 +11,7 @@ namespace PCACalcula.Domain.Services
             if (IsInvalid())
                 return 0;
 
-            return ((float)((double)valorInicial * Math.Pow(1.01, meses))).ToTwoPlaces();
+            return ((double)valorInicial * Math.Pow(1.01, meses)).ToTwoPlaces();
         }
 
         private void ValidarParametros(decimal valorInicial, int meses)
