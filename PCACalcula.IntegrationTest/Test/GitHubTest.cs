@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PCACalcula.XUnitTest.tests
+namespace PCACalcula.IntegrationTest.Test
 {
     public class GitHubTest : TestFixture
     {
