@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PCACalcula.XUnitTest\PCACalcula.XUnitTest.csproj" />
+    <ProjectReference Include="..\PCACalcula\PCACalcula.csproj" />
   </ItemGroup>
 
 </Project>
