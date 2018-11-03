@@ -1,6 +1,4 @@
-﻿using Bogus;
-using Newtonsoft.Json;
-using PCACalcula.Domain.Services;
+﻿using Newtonsoft.Json;
 using PCACalcula.IntegrationTest.Infra;
 using PCACalcula.XUnitTest.tests.Asserts;
 using System.Net.Http;

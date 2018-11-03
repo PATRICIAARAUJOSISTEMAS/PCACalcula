@@ -1,5 +1,4 @@
-﻿using Bogus;
-using PCACalcula.IntegrationTest.Infra;
+﻿using PCACalcula.IntegrationTest.Infra;
 using Xunit;
 using PCACalcula.XUnitTest.tests.Utils;
 using System.Threading.Tasks;

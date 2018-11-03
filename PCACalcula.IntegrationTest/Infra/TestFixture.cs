@@ -1,8 +1,5 @@
 ﻿using Bogus;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace PCACalcula.IntegrationTest.Infra
 {
