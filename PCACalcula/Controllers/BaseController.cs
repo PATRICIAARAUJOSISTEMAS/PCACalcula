@@ -9,7 +9,7 @@ namespace PCACalcula.Controllers
     {
         private IServiceBase _serviceBase;
 
-        protected new IActionResult ResponseOk(object result, IServiceBase serviceBase)
+        protected IActionResult ResponseOk(object result, IServiceBase serviceBase)
         {
             _serviceBase = serviceBase;
 
@@ -26,7 +26,7 @@ namespace PCACalcula.Controllers
                 });
             }
         }
-        protected new IActionResult ResponseException(Exception ex)
+        protected IActionResult ResponseException(Exception ex)
         {
             return StatusCode(
                 (int)HttpStatusCode.InternalServerError,
