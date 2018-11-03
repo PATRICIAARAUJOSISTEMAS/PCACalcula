@@ -6,7 +6,7 @@ using PCACalcula.Models;
 
 namespace PCACalcula.Controllers
 {
-    [Route("PCACalcula/[controller]")]
+    [Route("PCACalcula/[controller]/[action]")]
     public class CalculaJurosController : BaseController
     {
         private ICalculaJurosService _calculaJurosService;
@@ -19,7 +19,7 @@ namespace PCACalcula.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(float), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult CalculaJuros(CalculaJurosViewModel viewModel)
+        public IActionResult CalculaJuros([FromQuery]CalculaJurosViewModel viewModel)
         {
             try
             {

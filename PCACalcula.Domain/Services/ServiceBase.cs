@@ -3,7 +3,7 @@ using prmToolkit.NotificationPattern;
 
 namespace PCACalcula.Domain.Services
 {
-    public abstract class ServiceBase : Notifiable, IServiceBase
+    public  class ServiceBase : Notifiable, IServiceBase
     {
     }
 }

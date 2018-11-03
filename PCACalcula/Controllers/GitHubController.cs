@@ -5,7 +5,7 @@ using PCACalcula.Domain.Interfaces;
 
 namespace PCACalcula.Controllers
 {
-    [Route("PCACalcula/[controller]")]
+    [Route("PCACalcula/[controller]/[action]")]
     public class GitHubController : BaseController
     {
         private IGitHubService _gitHubService;

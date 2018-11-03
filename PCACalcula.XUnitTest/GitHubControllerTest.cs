@@ -26,7 +26,6 @@ namespace PCACalcula.XUnitTest
             IncludeSetup(resultadoEsperado);
 
             var controller = new GitHubController(_serviceMock.Object);
-
             var actionResult = controller.ShowMetheCode();
 
             Assert.IsType<OkObjectResult>(actionResult);
